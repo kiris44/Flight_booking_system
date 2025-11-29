@@ -2,8 +2,7 @@ package com.flightBookingSys.central_api.connector;
 
 import com.flightBookingSys.central_api.dto.AllUserDto;
 import com.flightBookingSys.central_api.enums.AirlineStatus;
-import com.flightBookingSys.central_api.model.Airline;
-import com.flightBookingSys.central_api.model.AppUser;
+import com.flightBookingSys.central_api.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -81,5 +80,61 @@ public class DbApiConnector {
         RequestEntity request = RequestEntity.get(url).build();
         ResponseEntity<AppUser> response = restTemplate.exchange(url, HttpMethod.GET, request, AppUser.class);
         return response.getBody();
+    }
+
+    public Airline callGetAirlineByAdminIdEndpoint(UUID adminId){
+        String url = dbApiBaseUrl + "/airline/get/admin/" +  adminId.toString();
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<Airline> resp = restTemplate.exchange(url, HttpMethod.GET, request, Airline.class);
+        return resp.getBody();
+    }
+
+    public Aircraft callSaveAircraftEndpoint(Aircraft aircraft){
+        String url = dbApiBaseUrl + "/aircraft/save";
+        RequestEntity request = RequestEntity.post(url).body(aircraft);
+        ResponseEntity<Aircraft> resp = restTemplate.exchange(url, HttpMethod.POST, request, Aircraft.class);
+        return resp.getBody();
+    }
+
+    public Aircraft callGetAircraftById(UUID aircraftId){
+        String url = dbApiBaseUrl + "/aircraft/" + aircraftId.toString();
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<Aircraft> resp = restTemplate.exchange(url, HttpMethod.GET, request, Aircraft.class);
+        return resp.getBody();
+    }
+
+    public Flight callCreateFlightEndpoint(Flight flight){
+        String url = dbApiBaseUrl + "/flight/create";
+        RequestEntity request = RequestEntity.post(url).body(flight);
+        ResponseEntity<Flight> response = restTemplate.exchange(url, HttpMethod.POST, request, Flight.class);
+        return response.getBody();
+    }
+
+    public FlightSeatMapping callCreateFlightSeatMapping(FlightSeatMapping flightSeatMapping){
+        String url = dbApiBaseUrl + "/seatmapping/create";
+        RequestEntity request = RequestEntity.post(url).body(flightSeatMapping);
+        ResponseEntity<FlightSeatMapping> response = restTemplate.exchange(url, HttpMethod.POST, request, FlightSeatMapping.class);
+        return response.getBody();
+    }
+
+    public SubFlight callCreateSubFlightEndpoint(SubFlight subFlight){
+        String url = dbApiBaseUrl + "/subflight/create";
+        RequestEntity request = RequestEntity.post(url).body(subFlight);
+        ResponseEntity<SubFlight> response = restTemplate.exchange(url, HttpMethod.POST, request, SubFlight.class);
+        return response.getBody();
+    }
+
+    public Object callSearchFlightEndpoint(String sourceAirport,
+                                           String destinationAirport,
+                                           String dateTime){
+        // db Api endpoint
+        sourceAirport = sourceAirport.replace(' ', '+');
+        destinationAirport = destinationAirport.replace(' ', '+');
+        dateTime = dateTime.replace(' ', '+');
+        String url = dbApiBaseUrl + "/flight/search?" + "sourceAirport="+sourceAirport+"&" + "destinationAirport=" + destinationAirport +"&" + "dateTime=" + dateTime;
+        log.info(url);
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<Object> resp = restTemplate.exchange(url, HttpMethod.GET, request, Object.class);
+        return resp.getBody();
     }
 }

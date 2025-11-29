@@ -5,6 +5,8 @@ import com.flightBookingSys.central_api.enums.UserType;
 import com.flightBookingSys.central_api.exceptions.InvalidCredentials;
 import com.flightBookingSys.central_api.model.AppUser;
 import com.flightBookingSys.central_api.utility.AuthUtility;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.util.List;
 
 @Service
 @Slf4j
+@NoArgsConstructor
 public class UserService {
 
     DbApiConnector dbApiConnector;
@@ -23,6 +26,7 @@ public class UserService {
         this.authUtility = authUtility;
         this.dbApiConnector = dbApiConnector;
     }
+
 
     public List<AppUser> getAllSystemAdmins(){
         List<AppUser> users = dbApiConnector.callGetAllSystemAdmins(UserType.APP_ADMIN.toString());
@@ -64,5 +68,24 @@ public class UserService {
         catch (Exception e){
             return false;
         }
+    }
+
+    public AppUser getUserFromToken(String token){
+        String payload = authUtility.decryptToken(token);
+        String email = payload.split(":")[0];
+        return this.getUserByEmail(email);
+    }
+
+    public String valueChecker(Integer a, Integer b){
+        if(a == null || b == null){
+            return "Null Values present";
+        }
+        if(a == 5){
+            return "Hey How are you ?";
+        }
+        if(b == 5){
+            return "I am good";
+        }
+        return a + b + "";
     }
 }

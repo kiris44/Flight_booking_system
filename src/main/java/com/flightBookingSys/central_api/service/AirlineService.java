@@ -88,4 +88,9 @@ public class AirlineService {
 
         mailService.notifyRejectRequestToAirlineAdmin(airline.getAdmin().getName(), airline.getAdmin().getEmail(), res);
     }
+
+    public Airline getAirlineByAdminId(UUID adminId){
+        // dbApiConnector to get the airline
+        return dbApiConnector.callGetAirlineByAdminIdEndpoint(adminId);
+    }
 }
