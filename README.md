@@ -67,21 +67,14 @@ A full-stack, microservices-based flight booking platform that connects airlines
 ### Technical Stack
 - **Backend**: Java 17, Spring Boot 3.x
 - **Security**: Spring Security, JWT
-- **Database**: MySQL/PostgreSQL
+- **Database**: PostgreSQL
 - **API Documentation**: Swagger/OpenAPI 3.0
 - **Build Tool**: Maven
-- **Containerization**: Docker
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 - Java 17 or higher
 - Maven 3.8+
-- MySQL 8.0+ or PostgreSQL 13+
-- Node.js 16+ (for frontend)
+- PostgreSQL 13+
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/yourusername/flight-booking-system.git](https://github.com/yourusername/flight-booking-system.git)
-   cd flight-booking-system
