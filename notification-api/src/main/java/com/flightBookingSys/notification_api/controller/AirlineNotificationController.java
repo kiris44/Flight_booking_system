@@ -1,0 +1,32 @@
+package com.flightBookingSys.notification_api.controller;
+
+import com.flightBookingSys.notification_api.dto.AirlineRejectDto;
+import com.flightBookingSys.notification_api.models.Airline;
+import com.flightBookingSys.notification_api.service.AirlineNotificationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/v1/notify/airline")
+public class AirlineNotificationController {
+
+    AirlineNotificationService airlineNotificationService;
+
+    @Autowired
+    public AirlineNotificationController(AirlineNotificationService airlineNotificationService){
+        this.airlineNotificationService = airlineNotificationService;
+    }
+
+    @PutMapping("/admin/accept-request")
+    public void airlineAdminAcceptNotification(@RequestBody Airline airline){
+        airlineNotificationService.airlineRequestAcceptNotification(airline);
+    }
+
+    @PutMapping("/admin/reject-request")
+    public void airlineAdminRejectNotification(@RequestBody AirlineRejectDto airlineRejectDto){
+        airlineNotificationService.notifyAirlineAdminRejectNotification(airlineRejectDto);
+    }
+}

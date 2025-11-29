@@ -1,0 +1,25 @@
+package com.flightBookingSys.db_api.controllers;
+
+import com.flightBookingSys.db_api.model.FlightSeatMapping;
+import com.flightBookingSys.db_api.repositories.FlightSeatMappingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/v1/db/seatmapping")
+public class FlightSeatMappingController {
+
+    FlightSeatMappingRepository flightSeatMappingRepository;
+    @Autowired
+    public FlightSeatMappingController(FlightSeatMappingRepository flightSeatMappingRepository){
+        this.flightSeatMappingRepository = flightSeatMappingRepository;
+    }
+
+    @PostMapping("/create")
+    public FlightSeatMapping createFlightSeatMapping(@RequestBody FlightSeatMapping flightSeatMapping){
+        return flightSeatMappingRepository.save(flightSeatMapping);
+    }
+}
