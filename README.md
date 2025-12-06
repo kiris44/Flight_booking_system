@@ -1,80 +1,54 @@
 # ✈️ Flight Booking System
 
-A full-stack, microservices-based flight booking platform that connects airlines with customers, providing a seamless booking experience with real-time flight search, booking management, and airline administration.
+## 📝 Overview
+A modern, scalable Flight Booking System built with microservices architecture. This system allows users to search for flights, book tickets, manage bookings, and handle user authentication and authorization.
 
-## 🌟 Key Features
+### Key Features
+- User registration and authentication
+- Flight search and booking
+- Booking management
+- Payment processing
+- Email notifications
+- Admin dashboard
 
-### User Management
-- **Multi-role Authentication**
-  - JWT-based authentication
-  - Role-based access control (Admin, Airline, Customer)
-  - Secure password hashing
-  - Session management
+## 🏗️ Architecture
 
-### Flight Booking
-- **Intuitive Search**
-  - Search by source, destination, and date
-  - Filter by price, airlines, and departure/arrival times
-  - View available seats and pricing
+### 🔹 Tech Stack
+- **Language**: Java 17+
+- **Framework**: Spring Boot 3.x
+- **API Gateway**: Spring Cloud Gateway
+- **Service Discovery**: Netflix Eureka
+- **Configuration**: Spring Cloud Config
+- **Database**: PostgreSQL / MongoDB
+- **Message Broker**: Apache Kafka
+- **Containerization**: Docker
+- **Monitoring**: Prometheus + Grafana
+- **Tracing**: Zipkin
+- **Logging**: ELK Stack
 
-- **Booking Management**
-  - Secure payment integration
-  - Booking confirmation and e-tickets
-  - Booking history and status tracking
-  - Cancellation and refund processing
-
-### Airline Management
-- **Airline Onboarding**
-  - Registration with document verification
-  - Admin approval workflow
-  - Profile and fleet management
-
-- **Flight Operations**
-  - Aircraft registration and management
-  - Flight scheduling and route planning
-  - Dynamic seat mapping
-  - Real-time flight status updates
-
-### Admin Dashboard
-- **User Management**
-  - View and manage all users
-  - Monitor user activities
-  - Handle user reports and issues
-
-- **Airline Oversight**
-  - Approve/Reject airline applications
-  - Monitor airline performance
-  - Manage flight schedules and routes
-
-## 🏗️ System Architecture
-
-### Microservices
-1. **Central API**
-   - Core business logic
-   - Request routing
-   - Service orchestration
-
-2. **Database Service**
-   - Data persistence
-   - Query optimization
-   - Data integrity management
-
-3. **Notification Service**
-   - Email notifications
-   - Booking confirmations
-   - Flight status updates
-
-### Technical Stack
-- **Backend**: Java 17, Spring Boot 3.x
-- **Security**: Spring Security, JWT
-- **Database**: PostgreSQL
-- **API Documentation**: Swagger/OpenAPI 3.0
-- **Build Tool**: Maven
+### 🔹 Microservices
+| Service | Description | Port |
+|---------|-------------|------|
+| **API Gateway** | Single entry point for all client requests | 8080 |
+| **User Service** | Handles user registration, authentication, and profile management | 8081 |
+| **Flight Service** | Manages flight information, search, and availability | 8082 |
+| **Booking Service** | Handles flight bookings and reservations | 8083 |
+| **Payment Service** | Processes payments and handles transactions | 8084 |
+| **Notification Service** | Sends email/SMS notifications | 8085 |
 
 ## 🚀 Getting Started
 
-### Prerequisites
-- Java 17 or higher
+### 1️⃣ Prerequisites
+- Java 17+
 - Maven 3.8+
-- PostgreSQL 13+
+- Docker & Docker Compose
+- PostgreSQL 14+
+- Apache Kafka
+- Node.js 16+ (for frontend)
 
+### 🛠️ Installation & Setup
+
+1. **Clone the Repository**
+   ```bash
+   git clone [https://github.com/your-username/flight-booking-system.git](https://github.com/your-username/flight-booking-system.git)
+   cd flight-booking-system
